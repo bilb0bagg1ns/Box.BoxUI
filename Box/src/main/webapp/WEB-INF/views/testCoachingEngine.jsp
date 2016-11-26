@@ -5,8 +5,8 @@
 	"http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <body>
-	<h1>Spring 3 MVC REST web service</h1>
+	<h1>Spring 3 MVC REST Call</h1>
 
-	<h2>Movie Name : ${movie}</h2>
+	<h2>CoachingEngine Call Result : ${result}</h2>
 </body>
 </html>

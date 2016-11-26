@@ -2,6 +2,12 @@ package com.box.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * Temporary class - used in Quote model class.
+ * 
+ * @author mike.prasad
+ *
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Value {
 

@@ -1,5 +1,11 @@
 package com.box.model;
 
+/**
+ * Box UI user.
+ * 
+ * @author mike.prasad
+ *
+ */
 public class User {
 
 	private String userName;

@@ -1,5 +1,10 @@
 package com.box.model;
 
+/**
+ * Temporary class associated with reference implementation - To be deleted 
+ * @author mike.prasad
+ *
+ */
 public class Contact {
 	private int id;
 	private String name;

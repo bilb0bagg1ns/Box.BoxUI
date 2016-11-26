@@ -1,33 +1,20 @@
 package com.box.controller;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.GenericXmlApplicationContext;
-import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.box.config.SpringMongoConfig;
-import com.box.config.SpringMongoConfig1;
 import com.box.dao.ContactDAO;
 import com.box.model.Contact;
-import com.box.model.Customer;
-import com.box.model.Quote;
-import com.box.model.TestBody;
 import com.box.model.User;
 import com.box.services.AuthenticationService;
 
@@ -46,9 +33,6 @@ public class HomeController {
 	@Autowired
 	private ContactDAO contactDAO;
 	
-	@Autowired
-	private ApplicationContext appContext;
-	
 	//@Autowired
 	private AuthenticationService authenticationService;
 
@@ -65,22 +49,14 @@ public class HomeController {
 
 	// @RequestMapping(value="/")
 	@RequestMapping(value = "/home")
-	public ModelAndView listContact(ModelAndView model, @ModelAttribute User user) throws IOException {
-		MovieController mc = new MovieController();
+	public ModelAndView listContact(ModelAndView model, @ModelAttribute User user) throws IOException {	
+		// testing REST based call
+		CoachingEngineController cec = new CoachingEngineController();
 		ModelMap mm = new ModelMap();
-		String movie = mc.getMovie("James Bond", mm);
-		System.out.println(mm.get("movie") + "<<<<<<------------");
+		cec.getTest(mm);
+		System.out.println (mm.get("test") + "<<<<<<------------");
 		
-		RestTemplate restTemplate = new RestTemplate();
-		Quote quote = restTemplate.getForObject(
-		"http://gturnquist-quoters.cfapps.io/api/random", Quote.class);
-		System.out.println (quote.toString());
-		
-//		TestBody testBody = restTemplate.getForObject(
-//				"http://localhost:8090/engine/test", TestBody.class);
-//		System.out.println(testBody.toString());
-
-		
+		// authenticate user
         authenticationService = new AuthenticationService();
         boolean isAuthenticated = authenticationService.isAuthenticated(user);
 		if (isAuthenticated){
@@ -88,6 +64,19 @@ public class HomeController {
 			model.addObject("listContact", listContact);
 			model.setViewName("home");
 		}
+		return model;
+	}
+
+	@RequestMapping(value = "/testCoachingEngine")
+	public ModelAndView testCoachingEngine(ModelAndView model) throws IOException {	
+		// testing REST based call
+		CoachingEngineController cec = new CoachingEngineController();
+		ModelMap mm = new ModelMap();
+		cec.getTest(mm);
+		System.out.println (mm.get("test") + "<<<<<<------------");
+		
+		model.addObject("result", mm.get("test"));
+		model.setViewName("testCoachingEngine");
 		return model;
 	}
 	

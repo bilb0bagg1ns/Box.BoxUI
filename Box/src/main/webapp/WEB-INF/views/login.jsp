@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div align="center">
-		<h1>Logincc</h1>
+		<h1>Login</h1>
 		<form:form action="home" method="post" modelAttribute="user">
 		<table>
 			<tr>

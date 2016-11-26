@@ -2,6 +2,12 @@ package com.box.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * Temporary class used in CoachingEngineController to test REST based call.
+ * 
+ * @author mike.prasad
+ *
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Quote {
 
